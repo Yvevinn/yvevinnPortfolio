@@ -5,7 +5,7 @@ import React from 'react';
 interface ProjectItemProps {
     title: string;
     backgroundImg: StaticImageData;
-    tech: string[];
+    tech: string;
     projectUrl: string;
 }
 

@@ -17,19 +17,19 @@ const Projects: React.FC = () => {
                         title='HappyGo Kiddo App'
                         backgroundImg={hgkImg}
                         projectUrl=''
-                        tech={['HTML, CSS, JavaScript, React Native, Firebase']}
+                        tech='HTML, CSS, JavaScript, React Native, Firebase'
                     />
                     <ProjectItem
                         title='University Room Booking System'
                         backgroundImg={eduImg}
                         projectUrl=''
-                        tech={['HTML, CSS, JavaScript, PHP, Laravel']}
+                        tech='HTML, CSS, JavaScript, PHP, Laravel'
                     />
                     <ProjectItem
                         title='Public Transport Road Planning App Design'
                         backgroundImg={transImg}
                         projectUrl=''
-                        tech={['Figma']}
+                        tech='Figma'
                     />
                 </div>
             </div>
