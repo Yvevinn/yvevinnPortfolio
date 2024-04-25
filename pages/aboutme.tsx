@@ -14,7 +14,7 @@ const AboutMe: React.FC = () => {
                     </p>
                     <h2 className='text-2xl md:text-3xl font-semibold text-gray-800 mb-8'>Who I Am</h2>
                     <p className='py-2 text-lg md:text-xl text-gray-600 leading-tight'>
-                        Motivated Computer Science student with a strong foundation in programming languages such as HTML, Python, Java, and C++. Currently pursuing a Bachelor's degree in Computer Science at UCSI University, with a passion for solving complex problems and developing innovative solutions. Skilled in database management with SQL and experienced in using various software development tools and frameworks. Proven ability to work effectively in team environments and adapt to new challenges. Seeking an internship opportunity to further develop my technical skills and contribute to cutting-edge projects in the field of computer science.
+                        Motivated Computer Science student with a strong foundation in programming languages such as HTML, Python, Java, and C++. Currently pursuing a Bachelor degree in Computer Science at UCSI University, with a passion for solving complex problems and developing innovative solutions. Skilled in database management with SQL and experienced in using various software development tools and frameworks. Proven ability to work effectively in team environments and adapt to new challenges. Seeking an internship opportunity to further develop my technical skills and contribute to cutting-edge projects in the field of computer science.
                     </p>
                     <Link to="projects" smooth={true} duration={500}>
                         <p className='py-2 text-lg md:text-xl text-gray-600 underline cursor-pointer'>
