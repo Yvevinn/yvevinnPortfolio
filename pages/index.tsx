@@ -1,7 +1,8 @@
 import EventEmitter from "events";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Element, Link } from "react-scroll";
 import logo from "../public/assets/logo.png";
 import AboutMe from "./aboutme";
 import Contact from "./contact";
@@ -13,125 +14,99 @@ EventEmitter.defaultMaxListeners = 20;
 
 const Home: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("AboutMe");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+
   useEffect(() => {
     setActiveSection("AboutMe");
   }, []);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-gray-500 text-white py-4 fixed w-full z-50">
+      <div className="bg-gray-500 text-white py-3 px-2 fixed w-full z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
-          <div className="mr-6">
+          <div className="flex-1" style={{ maxWidth: '60px' }}>
             <a href="#" onClick={() => window.scrollTo(0, 0)}>
-              <Image src={logo} alt="Logo" className="h-10 w-20" />
+              <Image src={logo} alt="Logo" width={140} height={50} />
             </a>
           </div>
-          {/* Navigation Buttons */}
-          <div className="flex justify-end flex-grow">
-            <Link
-              to="about-me"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none mr-4 ${
-                activeSection === "AboutMe" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("AboutMe")}
-            >
-              About Me
-            </Link>
-            <Link
-              to="education"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none mr-4 ${
-                activeSection === "Education" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("Education")}
-            >
-              Education
-            </Link>
-            <Link
-              to="work-experience"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none mr-4 ${
-                activeSection === "WorkExperience" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("WorkExperience")}
-            >
-              Work Experience
-            </Link>
-            <Link
-              to="skills"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none mr-4 ${
-                activeSection === "Skills" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("Skills")}
-            >
-              Skills
-            </Link>
-            <Link
-              to="projects"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none mr-4 ${
-                activeSection === "Projects" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("Projects")}
-            >
-              Projects
-            </Link>
-            <Link
-              to="contact"
-              smooth={true}
-              duration={500}
-              spy={true}
-              offset={-100}
-              className={`text-xl font-bold cursor-pointer focus:outline-none ${
-                activeSection === "Contact" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveSection("Contact")}
-            >
-              Contact
-            </Link>
+          {/* Hamburger menu for mobile */}
+          <div className="lg:hidden">
+            {mobileMenuOpen ? (
+              <FaTimes onClick={toggleMobileMenu} className="text-3xl cursor-pointer" />
+            ) : (
+              <FaBars onClick={toggleMobileMenu} className="text-3xl cursor-pointer" />
+            )}
+          </div>
+          {/* Mobile Menu Content */}
+          {mobileMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-gray-400 p-5">
+              {['AboutMe', 'Education', 'WorkExperience', 'Skills', 'Projects', 'Contact'].map((section) => (
+                <Link
+                  key={section}
+                  to={section.toLowerCase()}
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  offset={-50}
+                  className="block text-white text-lg p-2"
+                  onClick={() => {
+                    setActiveSection(section);
+                    toggleMobileMenu(); // Close menu after selection
+                  }}
+                >
+                  {section.replace(/([A-Z])/g, ' $1').trim()}
+                </Link>
+              ))}
+            </div>
+          )}
+          {/* desktop Navigation Buttons */}
+          <div className="hidden lg:flex flex-grow justify-end">
+            {['AboutMe', 'Education', 'WorkExperience', 'Skills', 'Projects', 'Contact'].map(section => (
+              <Link
+                key={section}
+                to={section.toLowerCase()}
+                smooth={true}
+                duration={500}
+                spy={true}
+                offset={-50}
+                className={`text-lg font-bold cursor-pointer focus:outline-none mx-4 ${
+                  activeSection === section ? "border-b-2 border-white" : ""
+                }`}
+                onClick={() => setActiveSection(section)}
+              >
+                {section.replace(/([A-Z])/g, ' $1').trim()}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
       {/* Main Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 pt-16">
         <div className="container mx-auto px-4 py-8">
-          <div id="about-me" className="mb-16">
+          <Element name="aboutme" className="mb-16">
             <AboutMe />
-          </div>
-          <div id="education" className="mb-16">
+          </Element>
+          <Element name="education" className="mb-16">
             <Education />
-          </div>
-          <div id="work-experience" className="mb-16">
+          </Element>
+          <Element name="workexperience" className="mb-16">
             <WorkExperience />
-          </div>
-          <div id="skills" className="mb-16">
+          </Element>
+          <Element name="skills" className="mb-16">
             <Skills />
-          </div>
-          <div id="projects" className="mb-16">
+          </Element>
+          <Element name="projects" className="mb-16">
             <Projects />
-          </div>
-          <div id="contact">
+          </Element>
+          <Element name="contact">
             <Contact />
-          </div>
+          </Element>
         </div>
       </div>
     </div>

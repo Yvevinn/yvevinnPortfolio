@@ -14,7 +14,7 @@ const WorkExperience: React.FC = () => {
                         <div className="border border-gray-200 rounded-lg p-4">
                             <h3 className="text-xl font-semibold mb-2">IT Intern at WMA</h3>
                             <p className="text-gray-600 mb-2">Sept 2021 - Dec 2021</p>
-                            <p className="text-gray-700">
+                            <p className="text-gray-700 text-justify">
                                 Developed and implemented auto-reply function for Telegram and Facebook platforms to facilitate quicker responses to customer inquiries. Utilized Telegram bot systems like BotFather and Manybot, and MessageBird for Facebook, to set up automated response systems. Developed website using Bootstrap Studio. Designed user interfaces (UI) for various projects using Figma, ensuring intuitive and visually appealing designs. Collaborated with team members to create UI mockups and prototypes, incorporating feedback for iterative improvements.
                             </p>
                         </div>
